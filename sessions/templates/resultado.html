@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- Declaración del tipo de documento HTML5 -->
+<html lang="es">
+<!-- Define el idioma principal del documento como español -->
+
+<head>
+    <!-- Sección de metadatos del documento -->
+    <meta charset="UTF-8">
+    <!-- Especifica la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configura la visualización en dispositivos móviles -->
+    <title>Resultados</title>
+    <!-- Establece el título de la página que aparece en la pestaña del navegador -->
+</head>
+
+<body>
+    <!-- Cuerpo principal del documento HTML -->
+
+    <!-- Bloque condicional de Jinja2: verifica si existe session_data -->
+    {% if session_data %}
+
+        <!-- Lista desordenada para mostrar los datos -->
+        <ul>
+        <!-- Bucle for de Jinja2: itera sobre cada par clave-valor en session_data -->
+        {% for key, value in session_data.items() %}
+            <!-- Condicional: solo muestra las claves especificadas -->
+            {% if key in ['pais', 'capital', 'email'] %}
+                <!-- Elemento de lista: muestra la clave en negrita y el valor -->
+                <li><strong>{{ key|capitalize }}</strong> {{ value if value else "no especificado" }}</li>
+                <!-- 
+                    key|capitalize: convierte la primera letra de la clave a mayúscula
+                    value if value else "no especificado": muestra el valor o un texto por defecto si es None/vacío
+                -->
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% else %}
+        <!-- Mensaje que se muestra cuando no hay datos en session_data -->
+        <p>No hay datos en la sesion</p>
+    {% endif %}
+
+    <!-- Enlace para volver a la página principal -->
+    <a href="/">
+        <!-- Botón que activa el enlace -->
+        <button type="button">Volver al inicio</button>
+    </a>
+</body>
+</html>

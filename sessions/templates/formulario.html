@@ -1,0 +1,55 @@
+<!-- Declaración del tipo de documento HTML5 -->
+<!DOCTYPE html>
+
+<!-- Elemento raíz del documento HTML con atributo de idioma español -->
+<html lang="es">
+
+<!-- Sección head: contiene metadatos y configuración del documento -->
+<head>
+    <!-- Especifica la codificación de caracteres como UTF-8 -->
+    <meta charset="UTF-8">
+    
+    <!-- Configuración para diseño responsive en dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título de la página que aparece en la pestaña del navegador -->
+    <title>Formulario</title>
+</head>
+
+<!-- Cuerpo del documento: contenido visible de la página -->
+<body>
+    <!-- Bloque Jinja2 para manejar mensajes flash de Flask -->
+    {% with messages = get_flashed_messages() %}
+        <!-- Si hay mensajes flash -->
+        {% if messages %}
+            <!-- Lista no ordenada para mostrar los mensajes -->
+            <ul>
+            <!-- Iteración sobre cada mensaje -->
+            {% for message in messages %}
+                <!-- Elemento de lista con estilo rojo para mensajes de error -->
+                <li style="color: red">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Formulario que enviará datos mediante POST a la ruta /procesar -->
+    <form action="/procesar" method="POST">
+
+        <!-- Etiqueta y campo de entrada para el país -->
+        <label for="pais">Pais:</label>
+        <input type="text" id="pais" name="pais" required>
+
+        <!-- Etiqueta y campo de entrada para la capital -->
+        <label for="capital">Capital:</label>
+        <input type="text" name="capital" id="capital" required>
+
+        <!-- Etiqueta y campo de entrada para el email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <!-- Botón para enviar el formulario -->
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
