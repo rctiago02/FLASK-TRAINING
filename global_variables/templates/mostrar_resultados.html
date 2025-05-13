@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+</head>
+<body>
+    {%for clave,valor in diccionario_en_html.items() %}
+        <p><strong>{{ clave }}:</strong> {{ valor }}</p>
+    {% endfor %}
+
+    <a href="/saludo/nombre">
+        <button type="button">Bienvenida</button>
+    </a>
+</body>
+</html>
